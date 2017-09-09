@@ -113,5 +113,10 @@ public class Field {
         }
         System.out.println("You win");
     }
-
+    public int getWidth(){
+        return num[0].length;
+    }
+    public int getHeight(){
+        return num.length;
+    }
 }
