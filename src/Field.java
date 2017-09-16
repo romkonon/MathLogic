@@ -85,20 +85,6 @@ public class Field {
             System.out.println();
         }
 
-
-        /* for gebug
-        System.out.print("======================  ");
-        for (int q=0; q<3*num[0].length; q++) System.out.print("=");
-        System.out.println();
-
-        for (int i=0; i<num.length; i++) {
-            for (int j=0; j<num[0].length; j++) {
-                System.out.print(right[i][j]?1:0);
-            }
-            System.out.println();
-        }
-        //*/
-
     }
 
     public static void main(String[] args) {

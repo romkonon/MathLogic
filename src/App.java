@@ -36,7 +36,6 @@ public class App extends Application {
                 column = Integer.parseInt(tfH.getText());
                 Field fField = new Field(row,column);
                 GridPane field = new GridPane();
-                Button buttons[][] = new Button[row][column];
                 for(int y = 0; y < column;y++){
                     for (int x = 0; x< row; x++){
                         TextField tf = new TextField();
@@ -44,7 +43,7 @@ public class App extends Application {
                         tf.setPrefWidth(50);
                         tf.setAlignment(Pos.CENTER);
                         tf.setEditable(false);
-                        tf.setText("test V" + y + x);//Set vSum
+                        tf.setText("V" + (y + x));//Set vSum
 
                         field.setRowIndex(tf,x+1);
                         field.setColumnIndex(tf,0);
@@ -58,11 +57,26 @@ public class App extends Application {
                         tf.setPrefWidth(50);
                         tf.setAlignment(Pos.CENTER);
                         tf.setEditable(false);
-                        tf.setText("test H" + x + y);//Set hSum
+                        tf.setText("H" + (x + y));//Set hSum
 
                         field.setRowIndex(tf,0);
                         field.setColumnIndex(tf,y+1);
                         field.getChildren().add(tf);
+                    }
+                }
+                for(int i = 0; i<column;i++){
+                    for (int j = 0; j<row; j++){
+                        Button bt = new Button();
+                        bt.setPrefHeight(50);
+                        bt.setPrefWidth(50);
+                        bt.setAlignment(Pos.CENTER);
+                        bt.setText("bt" + j +i);//set value
+                        field.setRowIndex(bt,j+1);
+                        field.setColumnIndex(bt,i+1);
+                        bt.setOnAction(event->{
+
+                        });
+                        field.getChildren().add(bt);
                     }
                 }
                 startWindow.close();
