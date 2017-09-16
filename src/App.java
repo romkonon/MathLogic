@@ -27,11 +27,13 @@ public class App extends Application {
         tfH.setFocusTraversable(false);
         tfH.setPrefWidth(100);
         tfH.setPrefHeight(100);
+        tfH.setAlignment(Pos.CENTER);
         TextField tfW = new TextField();
         tfW.setPromptText("row");
         tfW.setFocusTraversable(false);
         tfW.setPrefWidth(100);
         tfW.setPrefHeight(100);
+        tfW.setAlignment(Pos.CENTER);
         Button bStart = new Button("Start");
         bStart.setPrefWidth(200);
         bStart.setPrefHeight(100);
@@ -111,7 +113,7 @@ public class App extends Application {
                                 alert.setHeaderText("You Win");
                                 alert.showAndWait();
                                 startWindow.close();
-                                startWindow.setScene((startScene));
+                                startWindow.setScene(startScene);
                                 startWindow.show();
                             }
                         });
