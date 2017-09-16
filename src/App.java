@@ -25,10 +25,16 @@ public class App extends Application {
         TextField tfH = new TextField();
         tfH.setPromptText("column");
         tfH.setFocusTraversable(false);
+        tfH.setPrefWidth(100);
+        tfH.setPrefHeight(100);
         TextField tfW = new TextField();
         tfW.setPromptText("row");
         tfW.setFocusTraversable(false);
+        tfW.setPrefWidth(100);
+        tfW.setPrefHeight(100);
         Button bStart = new Button("Start");
+        bStart.setPrefWidth(200);
+        bStart.setPrefHeight(100);
         start.getChildren().addAll(tfH,tfW,bStart);
         bStart.setOnAction(e->{
             if(!tfW.getText().isEmpty() && !tfH.getText().isEmpty()) {
