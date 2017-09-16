@@ -36,47 +36,80 @@ public class App extends Application {
                 column = Integer.parseInt(tfH.getText());
                 Field fField = new Field(row,column);
                 GridPane field = new GridPane();
-                for(int y = 0; y < column;y++){
+                for(int x = 0; x<column;x++){
+                    TextField tf = new TextField();
+                    tf.setPrefHeight(50);
+                    tf.setPrefWidth(50);
+                    tf.setAlignment(Pos.CENTER);
+                    tf.setEditable(false);
+                    GridPane.setConstraints(tf,x+1,0);
+                    tf.setText(fField.vSum[x].toString());
+                    field.getChildren().add(tf);
+                }
+                for(int x = 0; x<row;x++){
+                    TextField tf = new TextField();
+                    tf.setPrefHeight(50);
+                    tf.setPrefWidth(50);
+                    tf.setAlignment(Pos.CENTER);
+                    tf.setEditable(false);
+                    GridPane.setConstraints(tf,0,x+1);
+                    tf.setText(fField.hSum[x].toString());
+                    field.getChildren().add(tf);
+                }
+/*                for(int y = 0; y < column;y++){
                     for (int x = 0; x< row; x++){
                         TextField tf = new TextField();
                         tf.setPrefHeight(50);
                         tf.setPrefWidth(50);
                         tf.setAlignment(Pos.CENTER);
                         tf.setEditable(false);
-                        tf.setText("V" + (y + x));//Set vSum
-
+                        tf.setText(fField.vSum[x].toString());//Set vSum
                         field.setRowIndex(tf,x+1);
                         field.setColumnIndex(tf,0);
                         field.getChildren().add(tf);
                     }
-                }
-                for(int y = 0; y < column;y++){
+                }*/
+/*                for(int y = 0; y < column;y++){
                     for (int x = 0; x< row; x++){
                         TextField tf = new TextField();
                         tf.setPrefHeight(50);
                         tf.setPrefWidth(50);
                         tf.setAlignment(Pos.CENTER);
                         tf.setEditable(false);
-                        tf.setText("H" + (x + y));//Set hSum
-
+                        tf.setText(fField.hSum[x].toString());//Set hSum
                         field.setRowIndex(tf,0);
                         field.setColumnIndex(tf,y+1);
                         field.getChildren().add(tf);
                     }
-                }
+                }*/
                 for(int i = 0; i<column;i++){
                     for (int j = 0; j<row; j++){
-                        Button bt = new Button();
-                        bt.setPrefHeight(50);
-                        bt.setPrefWidth(50);
-                        bt.setAlignment(Pos.CENTER);
-                        bt.setText("bt" + j +i);//set value
-                        field.setRowIndex(bt,j+1);
-                        field.setColumnIndex(bt,i+1);
-                        bt.setOnAction(event->{
-
+                        CrdButton crdButton = new CrdButton(j+1,i+1,fField.getNum(j+1,i+1));
+                        crdButton.bt.setPrefHeight(50);
+                        crdButton.bt.setPrefWidth(50);
+                        crdButton.bt.setAlignment(Pos.CENTER);
+                        crdButton.bt.setText(crdButton.getValue().toString());//set value
+                        GridPane.setConstraints(crdButton.bt,i+1,j+1);
+                        crdButton.bt.setStyle("-fx-background-color: #ccff99; ");
+                        crdButton.bt.setOnAction(event->{
+                            if(fField.user[crdButton.getX()-1][crdButton.getY()-1]){
+                                crdButton.bt.setStyle("-fx-background-color: #ffad99; ");
+                            }
+                            else{
+                                crdButton.bt.setStyle("-fx-background-color: #ccff99; ");
+                            }
+                            fField.turn((crdButton.getX()-1),(crdButton.getY()-1));
+                            if(fField.isWin()){
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Victory");
+                                alert.setHeaderText("You Win");
+                                alert.showAndWait();
+                                startWindow.close();
+                                startWindow.setScene((startScene));
+                                startWindow.show();
+                            }
                         });
-                        field.getChildren().add(bt);
+                        field.getChildren().add(crdButton.bt);
                     }
                 }
                 startWindow.close();
@@ -88,5 +121,6 @@ public class App extends Application {
                 tfH.setPromptText("Invalid");
             }
         });
+
     }
 }

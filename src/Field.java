@@ -3,21 +3,44 @@ import java.util.Scanner;
 
 public class Field {
 
+
+
     int[][] num;
     boolean[][] right;
     boolean[][] user;
+    Integer[] hSum;
+    Integer[] vSum;
+    int[] uvSum;
+    int w;
+    int h;
 
     public Field(int w, int h) {
+        this.w = w;
+        this.h = h;
         num = new int[w][h];
         right = new boolean[w][h];
         user = new boolean[w][h];
+        vSum = new Integer[h];
+        hSum = new Integer[w];
         Random rand = new Random();
         for(int i=0; i<w; i++) {
             for(int j=0; j<h; j++) {
-                num[i][j] = rand.nextInt(10);
+                num[i][j] = rand.nextInt((10-1)+1)+1;
                 right[i][j] = rand.nextBoolean();
                 user[i][j] = true;
             }
+        }
+        for (int j=0; j<num[0].length;j++) {
+            int sum = 0;
+            for (int i = 0; i < num.length; i++)
+                if (right[i][j]) sum += num[i][j];
+            vSum[j]=sum;
+        }
+        for (int k=0; k<num.length; k++) {
+            int sum = 0;
+            for (int j = 0; j < num[k].length; j++)
+                if (right[k][j]) sum += num[k][j];
+            hSum[k]=sum;
         }
     }
 
@@ -38,7 +61,14 @@ public class Field {
         }
         return true;
     }
+    public Integer getVSum(int j){
+        return vSum[j];
+    }
+    public Integer getHSum(){
+        Integer sum=0;
 
+        return sum;
+    }
     public void show() {
         System.out.print("       ");
         for (int j=0; j<num[0].length;j++) {
@@ -104,5 +134,8 @@ public class Field {
     }
     public int getHeight(){
         return num.length;
+    }
+    public int getNum(int x, int y) {
+        return this.num[x-1][y-1];
     }
 }
